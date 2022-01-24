@@ -69,8 +69,7 @@ class TransfererService
 					imagejpeg($image, $imgPath);
 					
 					imagedestroy($image);
-					$images[$i] = null;
-					$image = null;
+					unset($image);
 	
 					echo "Transferido: $imgPath\n";
 				}

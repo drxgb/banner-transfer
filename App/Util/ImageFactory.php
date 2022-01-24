@@ -15,8 +15,9 @@ abstract class ImageFactory
 		$destination = imagecreatetruecolor($dw, $dh);
 		$source = imagecreatefromstring(file_get_contents($file));
 
-		if (imagecopyresized($destination, $source, 0, 0, 0, 0, $dw, $dh, $sw, $sh))
-			return $destination;
-		return null;
+		imagecopyresized($destination, $source, 0, 0, 0, 0, $dw, $dh, $sw, $sh);
+		imagedestroy($source);
+		unset($source);
+		return $destination;
 	}
 }
