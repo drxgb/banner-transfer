@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Exception\InvalidPathException;
+use App\Service\TransfererService;
 
 abstract class App
 {
@@ -19,16 +20,25 @@ abstract class App
 				$rootDir . '/profile_covers',
 				$rootDir . '/profile_banners'
 			);
+			$service = new TransfererService($transferer);
 			
 			$transferer->parseSource();
 			$transferer->parseDestination();
-			$transferer->start();
+
+			if (GUI::answerYesOrNo("\nIniciar transferência?"))
+			{
+				echo "\nIniciando a transferência dos banners...\n\n";
+				$service->start();
+				echo "\nBanners transferidos com sucesso! \\o/\n";
+			}
 		}
 		catch (InvalidPathException $e)
 		{
 			echo 'ERRO: ' . $e->getMessage() . PHP_EOL;
 			return 1;
 		}
+
+		echo "Encerrando o programa...\n";
 		return 0;
 	}
 

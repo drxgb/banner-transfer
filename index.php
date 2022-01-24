@@ -6,12 +6,5 @@ use App\App;
 use DB\Connection;
 
 
-Connection::connect(
-	$config['host'], 
-	$config['port'],
-	$config['schema'],
-	$config['user'],
-	$config['password'],
-	true
-);
+Connection::connect($config, true);
 App::start();

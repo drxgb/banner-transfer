@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Directory;
+use App\Util\Directory;
 
 class Transferer
 {
@@ -11,37 +11,34 @@ class Transferer
 		private string $destination
 	)
 	{
-		$this->source = realpath($source);
-		$this->destination = realpath($destination);
+		$this->source = realpath(Directory::makePath($source));
+		$this->destination = realpath(Directory::makePath($destination));
 	}
 
-
-	public function start() : void
+	public function __get($attr)
 	{
-
+		return $this->$attr;
 	}
 
 
 	public function parseSource() : void
 	{
-		echo "\nDiretório Fonte: " . $this->source . PHP_EOL;
-		echo "Arquivos encontrados: " . $this->countFiles($this->source) . PHP_EOL;
+		echo "\nDiretório Fonte: " . $this->source;
+		echo "\nArquivos encontrados: " . $this->countFiles($this->source) . PHP_EOL;
 	}
 
 
 	public function parseDestination() : void
 	{
-		echo "\nDiretório Destino: " . $this->destination . PHP_EOL;
-		echo "Arquivos encontrados: " . $this->countFiles($this->destination) . PHP_EOL;
+		echo "\nDiretório Destino: " . $this->destination;
+		echo "\nArquivos encontrados: " . $this->countFiles($this->destination) . PHP_EOL;
 	}
 
 
 	private function countFiles(string $dir) : int
 	{
 		$count = 0;
-		$files = array_filter(scandir($dir), function($file) {
-			return $file !== '.' && $file !== '..';
-		});
+		$files = Directory::getFiles($dir);
 
 		foreach ($files as $file)
 		{
