@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Exception\InvalidPathException;
+use DB\Connection;
 
 abstract class App
 {
