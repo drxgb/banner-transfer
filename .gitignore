@@ -1,4 +1,5 @@
 data/
 test/
+database/
 docker-compose.yaml
 Dockerfile
