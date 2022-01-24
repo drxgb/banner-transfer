@@ -1,3 +1,7 @@
 <?php
 
-echo 'Fala, fiote! Blz?' . PHP_EOL;
+include_once('includes/include.php');
+use App\App;
+
+
+App::start();
