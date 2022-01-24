@@ -1,2 +1,4 @@
-data/*
-test/*
+data/
+test/
+docker-compose.yaml
+Dockerfile

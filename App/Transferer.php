@@ -6,9 +6,13 @@ use App\Util\Directory;
 
 class Transferer
 {
+	private $source;
+	private $destination;
+
+
 	public function __construct(
-		private string $source,
-		private string $destination
+		string $source,
+		string $destination
 	)
 	{
 		$this->source = realpath(Directory::makePath($source));
