@@ -67,6 +67,7 @@ class TransfererService
 					$imgDir = Directory::makePath($destination . $i . DIRECTORY_SEPARATOR . floor($id / 1000) . DIRECTORY_SEPARATOR);
 					$imgPath = $imgDir . $file;
 					imagejpeg($image, $imgPath);
+					imagedestroy($image);
 	
 					echo "Transferido: $imgPath\n";
 				}
