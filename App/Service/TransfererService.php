@@ -49,26 +49,29 @@ class TransfererService
 				continue;
 			}
 
-			
-			echo "Recebendo: $path\n";
-			$destination = $this->transferer->__get('destination') . DIRECTORY_SEPARATOR;
-			
-			$images['l'] = ImageFactory::createResizedImage($path, 1280);
-			$images['m'] = ImageFactory::createResizedImage($path, 640);
-
-			list(, $h) = getimagesize($path);
-			list($id) = explode('.', $file);
-			$bannerPos = $this->setBannerPosition($this->repository->getSourcePosition($id), $h);
-			$this->repository->setDestinationPosition($id, $bannerPos);
-
-			foreach ($images as $i => $image)
+			list($id, $ext) = explode('.', $file);
+			if ($ext === 'jpg')
 			{
-				$imgDir = Directory::makePath($destination . $i . DIRECTORY_SEPARATOR . floor($id / 1000) . DIRECTORY_SEPARATOR);
-				$imgPath = $imgDir . $file;
-				imagejpeg($image, $imgPath);
-
-				echo "Transferido: $imgPath\n";
+				echo "Recebendo: $path\n";
+				$destination = $this->transferer->__get('destination') . DIRECTORY_SEPARATOR;
+				
+				$images['l'] = ImageFactory::createResizedImage($path, 1280);
+				$images['m'] = ImageFactory::createResizedImage($path, 640);
+	
+				list(, $h) = getimagesize($path);
+				$bannerPos = $this->setBannerPosition($this->repository->getSourcePosition($id), $h);
+				$this->repository->setDestinationPosition($id, $bannerPos);
+	
+				foreach ($images as $i => $image)
+				{
+					$imgDir = Directory::makePath($destination . $i . DIRECTORY_SEPARATOR . floor($id / 1000) . DIRECTORY_SEPARATOR);
+					$imgPath = $imgDir . $file;
+					imagejpeg($image, $imgPath);
+	
+					echo "Transferido: $imgPath\n";
+				}
 			}
+			
 		}
 	}
 }
