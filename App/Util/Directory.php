@@ -4,7 +4,7 @@ namespace App\Util;
 
 abstract class Directory
 {
-	public static function getFiles(string $path) : array | null
+	public static function getFiles(string $path)
 	{
 		if (is_dir($path))
 		{

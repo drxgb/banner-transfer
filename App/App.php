@@ -43,7 +43,7 @@ abstract class App
 	}
 
 
-	private static function getTargetPath(string $label) : string | InvalidPathException
+	private static function getTargetPath(string $label)
 	{
 		
 		$ok = false;

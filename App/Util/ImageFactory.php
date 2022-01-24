@@ -6,7 +6,7 @@ use GdImage;
 
 abstract class ImageFactory
 {
-	public static function createResizedImage(string $file, int $width) : GdImage | null
+	public static function createResizedImage(string $file, int $width)
 	{
 		list($sw, $sh) = getimagesize($file);
 		$dw = $width;
