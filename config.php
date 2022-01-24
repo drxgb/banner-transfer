@@ -2,13 +2,13 @@
 
 $config = [
 	// Anfitrião da base de dados
-	'host' => 'localhost',
+	'host' => 'bt-db',
 	'port' => 3306,
 
 	// A sua base de dados
 	'schema' => 'banner_transfer',
 	'user' => 'root',
-	'password' => '',
+	'password' => 'root',
 
 	// Tabela onde será feita a transferência
 	'table' => 'users',
