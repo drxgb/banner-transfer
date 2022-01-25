@@ -48,7 +48,6 @@ class TransfererService
 				$this->transfer($path);
 				continue;
 			}
-
 			list($id, $ext) = explode('.', $file);
 			if ($ext === 'jpg')
 			{
@@ -70,8 +69,10 @@ class TransfererService
 					
 					imagedestroy($image);
 					unset($image);
-	
+
+					
 					echo "Transferido: $imgPath\n";
+					chmod($imgPath, 0777);
 				}
 			}
 			

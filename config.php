@@ -17,4 +17,5 @@ $config = [
 	'user_column' => 'user_id',
 	'source_column' => 'kl_pc_cover_crop_y',
 	'destination_column' => 'banner_position_y',
+	'date_column' => 'banner_date',
 ];
