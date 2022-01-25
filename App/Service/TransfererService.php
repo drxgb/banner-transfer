@@ -72,7 +72,7 @@ class TransfererService
 
 					
 					echo "Transferido: $imgPath\n";
-					chmod($imgPath, 0644);
+					chmod($imgPath, 0666);
 				}
 			}
 			
